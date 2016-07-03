@@ -31,6 +31,7 @@ module TrackerApi
       attribute :point_scale_is_custom, Boolean
       attribute :profile_content, String
       attribute :public, Boolean
+      attribute :releases, [Release]
       attribute :start_date, DateTime
       attribute :start_time, DateTime
       attribute :time_zone, TimeZone
@@ -116,6 +117,10 @@ module TrackerApi
       # @return [Array[Story]] stories associated with this project
       def stories(params={})
         Endpoints::Stories.new(client).get(id, params)
+      end
+      
+      def releases(params={})
+        Endpoints::Releases.new(client).get(id, params)
       end
 
       # Provides a list of all the memberships in the project.
